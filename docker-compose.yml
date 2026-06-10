@@ -1,0 +1,72 @@
+# ─────────────────────────────────────────────────────────────
+# Digital Survivor – stack de producción
+# Red interna: `dsnet`
+#   • db    – postgres 16 (volumen `ds_pgdata`)
+#   • api   – Express + Prisma, expuesto en 127.0.0.1:3010
+#   • web   – nginx sirviendo estáticos + proxy /api → api, en 127.0.0.1:3011
+#
+# Caddy (externo, en /etc/caddy/Caddyfile) enruta
+#   digitalsurvivor.bauhub.online → 127.0.0.1:3011
+# ─────────────────────────────────────────────────────────────
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: digitalsurvivor_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ds_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - dsnet
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    image: digitalsurvivor-api:latest
+    container_name: digitalsurvivor_api
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: "4000"
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
+      JWT_SECRET: ${JWT_SECRET}
+      CORS_ORIGIN: ${CORS_ORIGIN}
+      AI_PROVIDER: ${AI_PROVIDER}
+    networks:
+      - dsnet
+    # API NO se expone al host; nginx del contenedor web habla por la red interna.
+    # Si necesitás curl directo: cambiar a "127.0.0.1:3010:4000"
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    image: digitalsurvivor-web:latest
+    container_name: digitalsurvivor_web
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "127.0.0.1:3011:80"
+    networks:
+      - dsnet
+
+networks:
+  dsnet:
+    driver: bridge
+
+volumes:
+  ds_pgdata:
+    name: digitalsurvivor_pgdata

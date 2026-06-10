@@ -1,0 +1,26 @@
+# No meter node_modules ni dist en el contexto de Docker
+node_modules
+**/node_modules
+**/dist
+**/coverage
+**/.vite
+**/.next
+**/.turbo
+**/.cache
+.git
+.gitignore
+.github
+.husky
+.vscode
+.idea
+.DS_Store
+**/*.log
+**/.env
+**/.env.local
+**/.env.*.local
+**/.env.production
+docs
+**/*.tsbuildinfo
+apps/api/dist
+apps/web/dist
+packages/shared/dist

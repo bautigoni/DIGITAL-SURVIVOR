@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Format only on pre-commit (rápido). Lint corre en CI.
+npx prettier --write --log-level error $(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ts|tsx|js|jsx|json|md|css|prisma)$' || true) 2>/dev/null || true

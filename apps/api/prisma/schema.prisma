@@ -1,0 +1,167 @@
+// Prisma schema para Digital Survivor
+// Documentado línea por línea para reviewers y DBAs.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// =============================
+// USUARIOS
+// =============================
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  username     String   @unique
+  passwordHash String
+  role         UserRole @default(STUDENT)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  runs      GameRun[]
+  classrooms ClassroomMember[]
+  ownedClassrooms Classroom[] @relation("OwnedClassrooms")
+  multiplayerEvents MultiplayerParticipant[]
+}
+
+enum UserRole {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+// =============================
+// PARTIDAS (runs)
+// =============================
+
+model GameRun {
+  id         String   @id @default(cuid())
+  userId     String
+  mode       RunMode
+  zoneId     String
+  level      Int      @default(1)
+  xp         Int      @default(0)
+  // Stats snapshot como JSON para flexibilidad de evolución
+  stats      Json
+  classId    String   @default("digital_detective")
+  unlockedTalents String[] @default([])
+  startedAt  DateTime @default(now())
+  endedAt    DateTime?
+  outcome    RunOutcome?
+  score      Int      @default(0)
+
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  decisions Decision[]
+
+  @@index([userId])
+  @@index([mode])
+}
+
+enum RunMode {
+  STORY
+  SURVIVAL
+  SCHOOL
+  MULTIPLAYER
+}
+
+enum RunOutcome {
+  VICTORY
+  DEFEAT
+  ABANDONED
+}
+
+// =============================
+// DECISIONES / EVENTOS
+// =============================
+
+model Decision {
+  id         String   @id @default(cuid())
+  runId      String
+  eventId    String
+  choiceId   String
+  quality    String
+  // Deltas aplicados en el momento (auditoría)
+  statDeltas Json
+  xpGained   Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  run GameRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+
+  @@index([runId])
+}
+
+// =============================
+// LOGROS
+// =============================
+
+model Achievement {
+  id        String   @id @default(cuid())
+  userId    String
+  code      String
+  unlockedAt DateTime @default(now())
+
+  @@unique([userId, code])
+  @@index([userId])
+}
+
+// =============================
+// ESCUELA
+// =============================
+
+model Classroom {
+  id        String   @id @default(cuid())
+  ownerId   String
+  name      String
+  inviteCode String  @unique
+  createdAt DateTime @default(now())
+
+  owner   User             @relation("OwnedClassrooms", fields: [ownerId], references: [id], onDelete: Cascade)
+  members ClassroomMember[]
+
+  @@index([ownerId])
+}
+
+model ClassroomMember {
+  id          String   @id @default(cuid())
+  classroomId String
+  userId      String
+  joinedAt    DateTime @default(now())
+
+  classroom Classroom @relation(fields: [classroomId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([classroomId, userId])
+}
+
+// =============================
+// MULTIJUGADOR
+// =============================
+
+model MultiplayerEvent {
+  id        String   @id @default(cuid())
+  title     String
+  startsAt  DateTime
+  endsAt    DateTime
+  mode      RunMode  @default(MULTIPLAYER)
+  createdAt DateTime @default(now())
+
+  participants MultiplayerParticipant[]
+}
+
+model MultiplayerParticipant {
+  id        String   @id @default(cuid())
+  eventId   String
+  userId    String
+  score     Int      @default(0)
+  joinedAt  DateTime @default(now())
+
+  event MultiplayerEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  user  User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([eventId, userId])
+}

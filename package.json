@@ -1,0 +1,57 @@
+{
+  "name": "digital-survivor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Digital Survivor — RPG de supervivencia en Internet contra amenazas digitales",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c blue,magenta \"npm run dev -w @ds/api\" \"npm run dev -w @ds/web\"",
+    "build": "npm run build -w @ds/shared && npm run build -w @ds/api && npm run build -w @ds/web",
+    "lint": "eslint \"{apps,packages}/**/src/**/*.{ts,tsx}\" --max-warnings=0",
+    "format": "prettier --write \"{apps,packages}/**/*.{ts,tsx,js,json,md,css,prisma}\"",
+    "test": "npm run test -w @ds/shared && npm run test -w @ds/api && npm run test -w @ds/web",
+    "prepare": "husky install || true",
+    "prisma:generate": "npm run prisma:generate -w @ds/api",
+    "prisma:migrate": "npm run prisma:migrate -w @ds/api",
+    "prisma:seed": "npm run prisma:seed -w @ds/api"
+  },
+  "devDependencies": {
+    "@alloc/quick-lru": "^5.2.0",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@vitest/expect": "^2.0.5",
+    "concurrently": "^9.0.1",
+    "dezalgo": "^1.0.4",
+    "esbuild": "^0.23.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "husky": "^9.0.11",
+    "jwa": "^2.0.0",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.3.2",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.0",
+    "vite-node": "^2.0.5",
+    "vitest": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@remix-run/router": "^1.23.3",
+    "autoprefixer": "^10.4.20",
+    "browserslist": "^4.28.2",
+    "indent-string": "^5.0.0",
+    "postcss": "^8.4.41",
+    "redent": "^4.0.0",
+    "strip-indent": "^4.0.0"
+  }
+}

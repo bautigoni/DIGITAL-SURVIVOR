@@ -30,7 +30,10 @@ export const EventCard = ({ event, onChoose, disabled, highlight }: EventCardPro
         <div className="mb-3 flex items-center gap-2 text-xs text-white/60">
           <span
             className="h-2 w-2 rounded-full"
-            style={{ background: zone.palette.primary, boxShadow: `0 0 8px ${zone.palette.primary}` }}
+            style={{
+              background: zone.palette.primary,
+              boxShadow: `0 0 8px ${zone.palette.primary}`,
+            }}
           />
           <span>{zone.name}</span>
           <span className="opacity-40">•</span>

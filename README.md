@@ -56,12 +56,12 @@ DIGITAL SURVIVOR/
 
 ### Stack obligatorio
 
-| Capa        | Tecnología                                           |
-|-------------|------------------------------------------------------|
-| Frontend    | React 19 · TypeScript · Vite · Tailwind · Framer Motion · Zustand · React Query · React Router |
-| Backend     | Node 20 · Express · TypeScript · PostgreSQL · Prisma |
-| Testing     | Vitest · React Testing Library                       |
-| Calidad     | ESLint · Prettier · Husky · lint-staged              |
+| Capa     | Tecnología                                                                                     |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| Frontend | React 19 · TypeScript · Vite · Tailwind · Framer Motion · Zustand · React Query · React Router |
+| Backend  | Node 20 · Express · TypeScript · PostgreSQL · Prisma                                           |
+| Testing  | Vitest · React Testing Library                                                                 |
+| Calidad  | ESLint · Prettier · Husky · lint-staged                                                        |
 
 ---
 

@@ -16,8 +16,12 @@ class SoundManager {
   init() {
     if (this.ctx) return;
     const AudioCtor: typeof AudioContext | undefined =
-      (window as unknown as { AudioContext?: typeof AudioContext; webkitAudioContext?: typeof AudioContext })
-        .AudioContext ??
+      (
+        window as unknown as {
+          AudioContext?: typeof AudioContext;
+          webkitAudioContext?: typeof AudioContext;
+        }
+      ).AudioContext ??
       (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
     if (!AudioCtor) return;
     this.ctx = new AudioCtor();
@@ -53,18 +57,32 @@ class SoundManager {
 
   reward() {
     this.playTone({ freq: 523.25, duration: 0.1, type: 'triangle', volume: 0.08 });
-    setTimeout(() => this.playTone({ freq: 659.25, duration: 0.1, type: 'triangle', volume: 0.08 }), 90);
-    setTimeout(() => this.playTone({ freq: 783.99, duration: 0.18, type: 'triangle', volume: 0.08 }), 180);
+    setTimeout(
+      () => this.playTone({ freq: 659.25, duration: 0.1, type: 'triangle', volume: 0.08 }),
+      90,
+    );
+    setTimeout(
+      () => this.playTone({ freq: 783.99, duration: 0.18, type: 'triangle', volume: 0.08 }),
+      180,
+    );
   }
 
   danger() {
     this.playTone({ freq: 180, duration: 0.2, type: 'sawtooth', volume: 0.07 });
-    setTimeout(() => this.playTone({ freq: 120, duration: 0.3, type: 'sawtooth', volume: 0.07 }), 90);
+    setTimeout(
+      () => this.playTone({ freq: 120, duration: 0.3, type: 'sawtooth', volume: 0.07 }),
+      90,
+    );
   }
 
   levelUp() {
     const notes = [523.25, 659.25, 783.99, 1046.5];
-    notes.forEach((f, i) => setTimeout(() => this.playTone({ freq: f, duration: 0.12, type: 'triangle', volume: 0.08 }), i * 80));
+    notes.forEach((f, i) =>
+      setTimeout(
+        () => this.playTone({ freq: f, duration: 0.12, type: 'triangle', volume: 0.08 }),
+        i * 80,
+      ),
+    );
   }
 
   startMusic() {

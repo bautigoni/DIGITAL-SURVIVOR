@@ -7,15 +7,22 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   glow?: 'pink' | 'cyan' | 'purple' | 'none';
 }
 
-export const Card = ({ children, className, variant = 'panel', glow = 'none', ...rest }: CardProps) => {
-  const base =
-    variant === 'comic'
-      ? 'comic-card'
-      : variant === 'strong'
-        ? 'panel-strong'
-        : 'panel';
+export const Card = ({
+  children,
+  className,
+  variant = 'panel',
+  glow = 'none',
+  ...rest
+}: CardProps) => {
+  const base = variant === 'comic' ? 'comic-card' : variant === 'strong' ? 'panel-strong' : 'panel';
   const glowClass =
-    glow === 'pink' ? 'shadow-glow' : glow === 'cyan' ? 'shadow-glow-cyan' : glow === 'purple' ? 'shadow-glow-purple' : '';
+    glow === 'pink'
+      ? 'shadow-glow'
+      : glow === 'cyan'
+        ? 'shadow-glow-cyan'
+        : glow === 'purple'
+          ? 'shadow-glow-purple'
+          : '';
   return (
     <div className={cn(base, glowClass, className)} {...rest}>
       {children}

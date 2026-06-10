@@ -50,7 +50,10 @@ export const SchoolPage = () => {
         <div className="mb-3 font-semibold">Errores más comunes</div>
         <ul className="space-y-2 text-sm">
           {mock.commonMistakes.map((m) => (
-            <li key={m.eventId} className="flex items-center justify-between rounded-lg bg-white/5 p-2">
+            <li
+              key={m.eventId}
+              className="flex items-center justify-between rounded-lg bg-white/5 p-2"
+            >
               <span className="font-mono text-white/70">{m.eventId}</span>
               <span className="text-rose-300">{m.count} caídas</span>
             </li>

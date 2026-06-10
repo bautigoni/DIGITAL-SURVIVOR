@@ -2,7 +2,11 @@ import type { NextFunction, Request, Response } from 'express';
 import { ZodError } from 'zod';
 
 export class HttpError extends Error {
-  constructor(public readonly status: number, message: string, public readonly details?: unknown) {
+  constructor(
+    public readonly status: number,
+    message: string,
+    public readonly details?: unknown,
+  ) {
     super(message);
   }
 }

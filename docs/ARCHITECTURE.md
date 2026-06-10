@@ -37,6 +37,7 @@
 ## Capas
 
 ### `@ds/shared` — Dominio puro
+
 - Sin dependencias de Node o React.
 - Exporta tipos (`Stats`, `GameEvent`, `Player`, etc.).
 - Implementa los casos de uso **puros** (applyDecision, checkSurvival, pickEvent).
@@ -64,6 +65,7 @@ src/
 ```
 
 **Reglas de dependencia:**
+
 - `domain` no importa nada de infraestructura.
 - `application` depende de `domain`.
 - `infrastructure` implementa interfaces de `domain`.
@@ -90,6 +92,7 @@ src/
 ```
 
 **Reglas:**
+
 - Una feature no importa de otra feature directamente. Si necesitan compartir, va a `components/` o `lib/`.
 - Las páginas son composición, no lógica de negocio.
 - El store del jugador persiste en `localStorage` con Zustand.
@@ -152,11 +155,11 @@ src/
 
 ## Decisiones de diseño
 
-| Decisión | Por qué |
-|---|---|
-| Monorepo npm workspaces | Sin overhead de pnpm/turbo; el grafo es chico. |
-| Zustand + persist en localStorage | Sin backend obligatorio para jugar la primera sesión. |
-| API REST simple (sin GraphQL) | Endpoints estables y cacheables. Suficiente para el alcance. |
-| IA heurística en `shared` | Permite al cliente previsualizar sin round-trip; el server tiene su provider. |
-| Sound procedural WebAudio | Cero assets externos; reproducible. |
-| Componentes con Framer Motion | Motion como citizen de primera para look "premium". |
+| Decisión                          | Por qué                                                                       |
+| --------------------------------- | ----------------------------------------------------------------------------- |
+| Monorepo npm workspaces           | Sin overhead de pnpm/turbo; el grafo es chico.                                |
+| Zustand + persist en localStorage | Sin backend obligatorio para jugar la primera sesión.                         |
+| API REST simple (sin GraphQL)     | Endpoints estables y cacheables. Suficiente para el alcance.                  |
+| IA heurística en `shared`         | Permite al cliente previsualizar sin round-trip; el server tiene su provider. |
+| Sound procedural WebAudio         | Cero assets externos; reproducible.                                           |
+| Componentes con Framer Motion     | Motion como citizen de primera para look "premium".                           |

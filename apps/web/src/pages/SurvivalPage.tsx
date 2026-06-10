@@ -10,7 +10,9 @@ import { motion } from 'framer-motion';
 import { Swords } from 'lucide-react';
 
 const formatTime = (s: number) => {
-  const m = Math.floor(s / 60).toString().padStart(2, '0');
+  const m = Math.floor(s / 60)
+    .toString()
+    .padStart(2, '0');
   const r = (s % 60).toString().padStart(2, '0');
   return `${m}:${r}`;
 };
@@ -53,12 +55,20 @@ export const SurvivalPage = () => {
           </motion.div>
         </header>
         {eventQuery.isLoading || !current ? (
-          <div className="panel-strong animate-pulse p-10 text-center text-white/60">Generando evento…</div>
+          <div className="panel-strong animate-pulse p-10 text-center text-white/60">
+            Generando evento…
+          </div>
         ) : (
-          <EventCard event={current} onChoose={(id) => decide.mutate(id)} disabled={decide.isPending} />
+          <EventCard
+            event={current}
+            onChoose={(id) => decide.mutate(id)}
+            disabled={decide.isPending}
+          />
         )}
         <div className="mt-4 flex gap-2">
-          <Button variant="ghost" onClick={() => location.reload()}>Reiniciar run</Button>
+          <Button variant="ghost" onClick={() => location.reload()}>
+            Reiniciar run
+          </Button>
         </div>
       </div>
       <aside>

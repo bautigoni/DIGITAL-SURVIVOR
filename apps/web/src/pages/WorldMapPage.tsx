@@ -20,11 +20,7 @@ export const WorldMapPage = () => {
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
       <div>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6"
-        >
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
           <h1 className="font-display text-4xl font-bold">
             El mapa de <span className="neon-text">Internet</span>
           </h1>
@@ -48,11 +44,14 @@ export const WorldMapPage = () => {
         <StatsHud stats={stats} level={level} xp={xp} />
         <div className="panel p-4 text-sm text-white/70">
           <div className="mb-1 text-xs uppercase tracking-widest text-white/50">Consejo</div>
-          Las zonas más oscuras (AI District, Dark Network) requieren nivel avanzado y racha de buenas decisiones.
+          Las zonas más oscuras (AI District, Dark Network) requieren nivel avanzado y racha de
+          buenas decisiones.
         </div>
         <div className="panel p-4 text-sm text-white/70">
           <div className="mb-1 text-xs uppercase tracking-widest text-white/50">Zona actual</div>
-          <div className="font-semibold text-white">{ZONES[currentZone as ZoneId]?.name ?? '—'}</div>
+          <div className="font-semibold text-white">
+            {ZONES[currentZone as ZoneId]?.name ?? '—'}
+          </div>
         </div>
       </aside>
     </div>

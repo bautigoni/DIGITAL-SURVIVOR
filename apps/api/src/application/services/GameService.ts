@@ -55,11 +55,7 @@ export class GameService {
     return { event, profile };
   }
 
-  async resolveDecision(input: {
-    runId: string;
-    event: GameEvent;
-    choice: Choice;
-  }): Promise<{
+  async resolveDecision(input: { runId: string; event: GameEvent; choice: Choice }): Promise<{
     profile: PlayerProfile;
     feedback: string;
     leveledUp: boolean;

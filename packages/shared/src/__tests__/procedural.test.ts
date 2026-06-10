@@ -4,7 +4,12 @@ import { createRng, generateProceduralEvent, pickEvent } from '../index.js';
 describe('Procedural AI', () => {
   it('generates an event with 4 distinct choices', () => {
     const rng = createRng(42);
-    const e = generateProceduralEvent({ rng, zone: 'social_media', category: 'phishing', playerLevel: 1 });
+    const e = generateProceduralEvent({
+      rng,
+      zone: 'social_media',
+      category: 'phishing',
+      playerLevel: 1,
+    });
     expect(e.choices.length).toBe(4);
     const ids = new Set(e.choices.map((c) => c.id));
     expect(ids.size).toBe(4);

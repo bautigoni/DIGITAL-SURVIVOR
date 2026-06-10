@@ -80,7 +80,9 @@ export const HomePage = () => {
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
                   <div className="text-xs text-white/50">Mensaje recibido</div>
-                  <div className="mt-1 text-lg">&ldquo;¡Ganaste un iPhone 16! Reclamalo acá 👇&rdquo;</div>
+                  <div className="mt-1 text-lg">
+                    &ldquo;¡Ganaste un iPhone 16! Reclamalo acá 👇&rdquo;
+                  </div>
                   <div className="mt-3 grid gap-2">
                     {['Abrir el link', 'Ignorar y bloquear', 'Reportar y verificar'].map((c, i) => (
                       <div
@@ -104,11 +106,15 @@ export const HomePage = () => {
       {/* STATS */}
       <section>
         <h2 className="font-display text-3xl font-bold">Tus 7 estadísticas</h2>
-        <p className="mt-1 text-white/60">Cada decisión es un trade-off. Administrá tu identidad digital como un RPG real.</p>
+        <p className="mt-1 text-white/60">
+          Cada decisión es un trade-off. Administrá tu identidad digital como un RPG real.
+        </p>
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
           {STAT_KEYS.map((k) => (
             <div key={k} className="panel p-3 text-center">
-              <div className="text-xs uppercase tracking-widest text-white/50">{STAT_LABELS[k]}</div>
+              <div className="text-xs uppercase tracking-widest text-white/50">
+                {STAT_LABELS[k]}
+              </div>
               <div className="mt-1 font-mono text-2xl font-bold text-white">?</div>
             </div>
           ))}
@@ -134,7 +140,9 @@ export const HomePage = () => {
                 <p className="mt-1 text-sm text-white/70">{z.tagline}</p>
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {z.threats.map((t) => (
-                    <span key={t} className="chip">{t}</span>
+                    <span key={t} className="chip">
+                      {t}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -146,7 +154,9 @@ export const HomePage = () => {
       {/* LOGROS */}
       <section>
         <h2 className="font-display text-3xl font-bold">Logros desbloqueables</h2>
-        <p className="mt-1 text-white/60">Reflejan hábitos digitales saludables, no horas de juego.</p>
+        <p className="mt-1 text-white/60">
+          Reflejan hábitos digitales saludables, no horas de juego.
+        </p>
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {ACHIEVEMENTS.map((a) => (
             <div key={a.id} className="panel p-4">

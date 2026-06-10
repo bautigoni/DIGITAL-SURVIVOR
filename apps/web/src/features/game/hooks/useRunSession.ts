@@ -59,9 +59,12 @@ export const useRunSession = () => {
       const choice = useGameStore.getState().lastChoice!;
       pushToast({
         type: qualityToToastType(choice.outcomeQuality),
-        title: choice.outcomeQuality === 'safe' || choice.outcomeQuality === 'educational'
-          ? '¡Buena decisión!'
-          : choice.outcomeQuality === 'risky' ? 'Decisión riesgosa' : 'Cuidado',
+        title:
+          choice.outcomeQuality === 'safe' || choice.outcomeQuality === 'educational'
+            ? '¡Buena decisión!'
+            : choice.outcomeQuality === 'risky'
+              ? 'Decisión riesgosa'
+              : 'Cuidado',
         description: res.feedback,
       });
       if (res.isPerfect) incrementStreak();

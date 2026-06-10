@@ -40,9 +40,14 @@ export const ZoneCard = ({ zoneId, unlocked, onSelect, index = 0 }: ZoneCardProp
         <div className="mb-2 flex items-center gap-2">
           <span
             className="h-2.5 w-2.5 rounded-full"
-            style={{ background: zone.palette.primary, boxShadow: `0 0 12px ${zone.palette.primary}` }}
+            style={{
+              background: zone.palette.primary,
+              boxShadow: `0 0 12px ${zone.palette.primary}`,
+            }}
           />
-          <span className="text-[10px] uppercase tracking-widest text-white/50">Zona {index + 1}</span>
+          <span className="text-[10px] uppercase tracking-widest text-white/50">
+            Zona {index + 1}
+          </span>
         </div>
         <h3 className="text-2xl font-bold leading-tight" style={{ color: zone.palette.primary }}>
           {zone.name}

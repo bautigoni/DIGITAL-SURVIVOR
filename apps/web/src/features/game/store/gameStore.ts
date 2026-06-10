@@ -38,8 +38,7 @@ export const useGameStore = create<GameStore>((set) => ({
   setResolving: (v) => set({ isResolving: v }),
   setLastChoice: (c) => set({ lastChoice: c }),
   setLastFeedback: (f) => set({ lastFeedback: f }),
-  pushToast: (t) =>
-    set((s) => ({ toasts: [...s.toasts, { ...t, id: newId() }].slice(-4) })),
+  pushToast: (t) => set((s) => ({ toasts: [...s.toasts, { ...t, id: newId() }].slice(-4) })),
   dismissToast: (id) => set((s) => ({ toasts: s.toasts.filter((t) => t.id !== id) })),
   toggleHud: () => set((s) => ({ showHud: !s.showHud })),
 }));

@@ -10,38 +10,38 @@ El feedback es **siempre narrativo y específico**. Nunca genérico.
 
 ## 2. Stats (7)
 
-| Stat | ¿Qué modela? | ¿Cómo se gana? | ¿Cómo se pierde? |
-|------|--------------|----------------|------------------|
-| Seguridad | Capacidad de detectar amenazas | Verificar, reportar, denunciar | Clics, transferencias impulsivas |
-| Reputación | Imagen pública | Compartir cosas ciertas, ayudar a NPCs | Viralizar fake news |
-| Dinero | Recursos para vivir el juego | Misiones, ayudas de la comunidad | Comprar scams |
-| Conocimiento | Educación acumulada | Eventos resueltos bien, level-ups | Decisiones peligrosas |
-| Confianza | Vínculos con NPCs | Hablar con la abuela, mentor | Caer en grooming, abandono |
-| Tiempo | Margen de maniobra | Organizarse, dormir | Scroll infinito |
-| Estrés Digital | Costo emocional | Eventos con presión | Dormir, verificar |
+| Stat           | ¿Qué modela?                   | ¿Cómo se gana?                         | ¿Cómo se pierde?                 |
+| -------------- | ------------------------------ | -------------------------------------- | -------------------------------- |
+| Seguridad      | Capacidad de detectar amenazas | Verificar, reportar, denunciar         | Clics, transferencias impulsivas |
+| Reputación     | Imagen pública                 | Compartir cosas ciertas, ayudar a NPCs | Viralizar fake news              |
+| Dinero         | Recursos para vivir el juego   | Misiones, ayudas de la comunidad       | Comprar scams                    |
+| Conocimiento   | Educación acumulada            | Eventos resueltos bien, level-ups      | Decisiones peligrosas            |
+| Confianza      | Vínculos con NPCs              | Hablar con la abuela, mentor           | Caer en grooming, abandono       |
+| Tiempo         | Margen de maniobra             | Organizarse, dormir                    | Scroll infinito                  |
+| Estrés Digital | Costo emocional                | Eventos con presión                    | Dormir, verificar                |
 
 **Game over** cuando cualquier stat (excepto estrés) llega a 0, o estrés llega a 100.
 
 ## 3. Zonas (6)
 
-| Zona | Nivel | Amenaza principal | Color |
-|------|-------|--------------------|-------|
-| Social Media District | 1 | Likes falsos, perfiles falsos, estafas | Rosa |
-| Gaming World | 2 | Robux, V-Bucks, hacks | Cyan |
-| News District | 3 | Fake news, clickbait | Amarillo |
-| Shopping City | 4 | Tiendas falsas, descuentos | Verde |
-| AI District | 5 | Imágenes, voces, deepfakes | Violeta |
-| Dark Network | 7 | Grooming, ingeniería social | Negro/Púrpura |
+| Zona                  | Nivel | Amenaza principal                      | Color         |
+| --------------------- | ----- | -------------------------------------- | ------------- |
+| Social Media District | 1     | Likes falsos, perfiles falsos, estafas | Rosa          |
+| Gaming World          | 2     | Robux, V-Bucks, hacks                  | Cyan          |
+| News District         | 3     | Fake news, clickbait                   | Amarillo      |
+| Shopping City         | 4     | Tiendas falsas, descuentos             | Verde         |
+| AI District           | 5     | Imágenes, voces, deepfakes             | Violeta       |
+| Dark Network          | 7     | Grooming, ingeniería social            | Negro/Púrpura |
 
 ## 4. Clases (5)
 
-| Clase | Stat principal | Pasivo |
-|-------|----------------|--------|
-| Detective Digital | Seguridad | +15% |
-| Experto en Redes | Reputación | +10% |
-| Cazador de Fake News | Conocimiento | +15% |
-| Analista de IA | Conocimiento | +20% |
-| Experto en Seguridad | Seguridad | +25% |
+| Clase                | Stat principal | Pasivo |
+| -------------------- | -------------- | ------ |
+| Detective Digital    | Seguridad      | +15%   |
+| Experto en Redes     | Reputación     | +10%   |
+| Cazador de Fake News | Conocimiento   | +15%   |
+| Analista de IA       | Conocimiento   | +20%   |
+| Experto en Seguridad | Seguridad      | +25%   |
 
 Las clases otorgan **multiplicador pasivo**, no技能的 numéricos absolutos, para evitar trivializar la elección.
 
@@ -66,18 +66,21 @@ Esto produce un **espacio de aprendizaje**: el jugador ve todas las alternativas
 ## 7. Modos
 
 ### Historia
+
 - Campaña principal.
 - NPC recurrentes (LunaSky, Abuela Rosa, Prof. Medina, Max Trend, Sr. Phisher, Inés Biotech, Joa).
 - Arcos temáticos por zona.
 - "Villano" mayor en AI District / Dark Network.
 
 ### Supervivencia
+
 - Eventos infinitos generados por IA.
 - Reloj de tiempo real.
 - Mide "cuánto sobrevivís" como puntaje.
 - Ideal para speedruns diarios.
 
 ### Escuela
+
 - Panel docente con:
   - Progreso individual
   - Errores comunes
@@ -86,6 +89,7 @@ Esto produce un **espacio de aprendizaje**: el jugador ve todas las alternativas
 - Diseñado para aula (1 docente, N estudiantes).
 
 ### Multijugador
+
 - Cooperativo: resistir oleadas juntos.
 - Competitivo: rankeds 1v1.
 - Eventos semanales temáticos (Phishing Fridays, Deepfake Showdown).

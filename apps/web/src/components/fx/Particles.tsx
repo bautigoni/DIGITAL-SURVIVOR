@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
 export const Particles = () => {
-  const [items, setItems] = useState<Array<{ x: number; y: number; s: number; d: number; c: string }>>([]);
+  const [items, setItems] = useState<
+    Array<{ x: number; y: number; s: number; d: number; c: string }>
+  >([]);
   useEffect(() => {
     const colors = ['#ff2e88', '#22e3ff', '#fde047', '#a855f7', '#34d399'];
     setItems(

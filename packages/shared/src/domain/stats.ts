@@ -53,8 +53,7 @@ export const DEFAULT_STATS: Stats = {
   stress: 20,
 };
 
-export const clampStat = (value: number): number =>
-  Math.max(0, Math.min(100, Math.round(value)));
+export const clampStat = (value: number): number => Math.max(0, Math.min(100, Math.round(value)));
 
 /**
  * Aplica un delta por stat respetando los límites [0,100].

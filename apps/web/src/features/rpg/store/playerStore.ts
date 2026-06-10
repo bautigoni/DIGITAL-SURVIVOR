@@ -1,10 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import {
-  DEFAULT_STATS,
-  type Stats,
-  type TalentId,
-} from '@ds/shared';
+import { DEFAULT_STATS, type Stats, type TalentId } from '@ds/shared';
 
 export type RunMode = 'STORY' | 'SURVIVAL' | 'SCHOOL' | 'MULTIPLAYER';
 
@@ -82,7 +78,10 @@ export const usePlayerStore = create<PlayerStore>()(
       },
       incrementStreak: () =>
         set((s) => ({
-          streak: { current: s.streak.current + 1, best: Math.max(s.streak.best, s.streak.current + 1) },
+          streak: {
+            current: s.streak.current + 1,
+            best: Math.max(s.streak.best, s.streak.current + 1),
+          },
         })),
       resetStreak: () => set((s) => ({ streak: { ...s.streak, current: 0 } })),
       addAchievement: (id) =>

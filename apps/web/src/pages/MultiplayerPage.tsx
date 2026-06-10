@@ -22,7 +22,9 @@ export const MultiplayerPage = () => {
         <h1 className="flex items-center gap-2 font-display text-3xl font-bold">
           <Users className="text-purple-300" /> Multijugador
         </h1>
-        <p className="text-white/60">Eventos semanales cooperativos y competitivos con ranking global.</p>
+        <p className="text-white/60">
+          Eventos semanales cooperativos y competitivos con ranking global.
+        </p>
       </header>
 
       <div className="grid gap-4 lg:grid-cols-2">
@@ -32,10 +34,15 @@ export const MultiplayerPage = () => {
           </div>
           <ul className="space-y-2">
             {events.map((e) => (
-              <li key={e.id} className="flex items-center justify-between rounded-xl bg-white/5 p-3">
+              <li
+                key={e.id}
+                className="flex items-center justify-between rounded-xl bg-white/5 p-3"
+              >
                 <div>
                   <div className="font-semibold">{e.title}</div>
-                  <div className="text-xs text-white/50">{e.mode} · {e.starts}</div>
+                  <div className="text-xs text-white/50">
+                    {e.mode} · {e.starts}
+                  </div>
                 </div>
                 <Button size="sm">Inscribirse</Button>
               </li>

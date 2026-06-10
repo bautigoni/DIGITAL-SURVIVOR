@@ -11,7 +11,10 @@ interface ChoiceCardProps {
   highlight?: ChoiceOutcomeQuality | null;
 }
 
-const variants: Record<ChoiceOutcomeQuality, { label: string; className: string; icon: React.ReactNode }> = {
+const variants: Record<
+  ChoiceOutcomeQuality,
+  { label: string; className: string; icon: React.ReactNode }
+> = {
   safe: {
     label: 'Seguro',
     className: 'border-emerald-400/40 hover:border-emerald-300/80',

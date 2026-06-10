@@ -24,7 +24,11 @@ export const ProgressBar = ({
       {label && (
         <div className="mb-1 flex items-center justify-between text-xs text-white/70">
           <span>{label}</span>
-          {showValue && <span className="font-mono">{Math.round(value)}/{max}</span>}
+          {showValue && (
+            <span className="font-mono">
+              {Math.round(value)}/{max}
+            </span>
+          )}
         </div>
       )}
       <div className="stat-bar">

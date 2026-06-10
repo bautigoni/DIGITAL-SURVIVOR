@@ -6,7 +6,9 @@ import type { TalentId, Stats } from '@ds/shared';
 export class PrismaPlayerRepository implements IPlayerRepository {
   constructor(private readonly prisma: PrismaClient) {}
 
-  async create(input: Omit<PlayerProfile, 'id' | 'startedAt' | 'endedAt' | 'outcome' | 'score'>): Promise<PlayerProfile> {
+  async create(
+    input: Omit<PlayerProfile, 'id' | 'startedAt' | 'endedAt' | 'outcome' | 'score'>,
+  ): Promise<PlayerProfile> {
     const created = await this.prisma.gameRun.create({
       data: {
         userId: input.userId,

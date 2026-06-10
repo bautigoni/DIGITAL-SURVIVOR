@@ -344,8 +344,7 @@ export const SEED_EVENTS: readonly GameEvent[] = [
     zoneId: 'ai',
     category: 'deceptive_ai',
     title: 'La foto que no ocurrió',
-    prompt:
-      'Una cuenta comparte una "foto filtrada" de un político en una situación comprometida.',
+    prompt: 'Una cuenta comparte una "foto filtrada" de un político en una situación comprometida.',
     context: 'La imagen tiene marcas extrañas en los bordes.',
     choices: [
       {

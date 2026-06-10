@@ -27,7 +27,9 @@ export const AchievementsPage = () => {
                   <div className="font-semibold">{a.name}</div>
                   <div className="text-xs text-white/60">{a.description}</div>
                 </div>
-                {isUnlocked && <span className="chip border-emerald-400/40 text-emerald-300">✓</span>}
+                {isUnlocked && (
+                  <span className="chip border-emerald-400/40 text-emerald-300">✓</span>
+                )}
               </div>
             </motion.div>
           );

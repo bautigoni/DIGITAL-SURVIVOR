@@ -1,10 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {
-  type GameEvent,
-  type Choice,
-  DEFAULT_STATS,
-  applyDecision,
-} from '../index.js';
+import { type GameEvent, type Choice, DEFAULT_STATS, applyDecision } from '../index.js';
 
 const safeChoice: Choice = {
   id: 'safe',
@@ -40,7 +35,17 @@ const _event: GameEvent = {
 describe('applyDecision', () => {
   it('applies safe choice correctly', () => {
     const res = applyDecision({
-      player: { id: 'p1', username: 'u', level: 1, xp: 0, classId: 'digital_detective', unlockedTalents: [], stats: { ...DEFAULT_STATS }, currentZone: 'social_media', recentDecisions: [] },
+      player: {
+        id: 'p1',
+        username: 'u',
+        level: 1,
+        xp: 0,
+        classId: 'digital_detective',
+        unlockedTalents: [],
+        stats: { ...DEFAULT_STATS },
+        currentZone: 'social_media',
+        recentDecisions: [],
+      },
       choice: safeChoice,
       pickNextEvent: () => null,
     });
@@ -51,7 +56,17 @@ describe('applyDecision', () => {
 
   it('detects dangerous choice', () => {
     const res = applyDecision({
-      player: { id: 'p1', username: 'u', level: 1, xp: 0, classId: 'digital_detective', unlockedTalents: [], stats: { ...DEFAULT_STATS }, currentZone: 'social_media', recentDecisions: [] },
+      player: {
+        id: 'p1',
+        username: 'u',
+        level: 1,
+        xp: 0,
+        classId: 'digital_detective',
+        unlockedTalents: [],
+        stats: { ...DEFAULT_STATS },
+        currentZone: 'social_media',
+        recentDecisions: [],
+      },
       choice: dangerousChoice,
       pickNextEvent: () => null,
     });
@@ -62,7 +77,17 @@ describe('applyDecision', () => {
 
   it('levels up when xp threshold is reached', () => {
     const res = applyDecision({
-      player: { id: 'p1', username: 'u', level: 1, xp: 90, classId: 'digital_detective', unlockedTalents: [], stats: { ...DEFAULT_STATS }, currentZone: 'social_media', recentDecisions: [] },
+      player: {
+        id: 'p1',
+        username: 'u',
+        level: 1,
+        xp: 90,
+        classId: 'digital_detective',
+        unlockedTalents: [],
+        stats: { ...DEFAULT_STATS },
+        currentZone: 'social_media',
+        recentDecisions: [],
+      },
       choice: safeChoice,
       pickNextEvent: () => null,
     });

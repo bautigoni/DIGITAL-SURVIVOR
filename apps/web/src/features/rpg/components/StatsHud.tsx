@@ -59,11 +59,7 @@ export const StatsHud = ({ stats, level, xp, className }: StatsHudProps) => {
                   {stats[key]}
                 </span>
               </div>
-              <ProgressBar
-                value={stats[key]}
-                color={STAT_COLORS[key]}
-                showValue={false}
-              />
+              <ProgressBar value={stats[key]} color={STAT_COLORS[key]} showValue={false} />
             </motion.div>
           );
         })}

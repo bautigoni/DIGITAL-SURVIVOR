@@ -16,10 +16,7 @@ export const initialStreak = (): StreakState => ({
  * Una racha se considera "buena" cuando la decisión es safe o educational.
  * Cualquier otra calidad resetea la racha.
  */
-export const updateStreak = (
-  state: StreakState,
-  quality: ChoiceOutcomeQuality,
-): StreakState => {
+export const updateStreak = (state: StreakState, quality: ChoiceOutcomeQuality): StreakState => {
   const isGood = quality === 'safe' || quality === 'educational';
   const current = isGood ? state.current + 1 : 0;
   return {

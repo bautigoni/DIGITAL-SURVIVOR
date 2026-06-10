@@ -17,8 +17,7 @@ body {
   background:
     radial-gradient(1200px 800px at 10% -10%, rgba(255, 46, 136, 0.15), transparent 60%),
     radial-gradient(900px 700px at 110% 10%, rgba(34, 227, 255, 0.12), transparent 60%),
-    radial-gradient(1000px 600px at 50% 110%, rgba(168, 85, 247, 0.15), transparent 60%),
-    #06030f;
+    radial-gradient(1000px 600px at 50% 110%, rgba(168, 85, 247, 0.15), transparent 60%), #06030f;
   background-attachment: fixed;
   overflow-x: hidden;
 }
@@ -72,7 +71,17 @@ body {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}

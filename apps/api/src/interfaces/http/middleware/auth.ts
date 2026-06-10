@@ -18,8 +18,7 @@ declare global {
 
 const SECRET = process.env.JWT_SECRET ?? 'dev-secret-change-me';
 
-export const signToken = (user: AuthUser): string =>
-  jwt.sign(user, SECRET, { expiresIn: '7d' });
+export const signToken = (user: AuthUser): string => jwt.sign(user, SECRET, { expiresIn: '7d' });
 
 export const requireAuth = (req: Request, _res: Response, next: NextFunction): void => {
   const header = req.header('authorization');
@@ -35,10 +34,12 @@ export const requireAuth = (req: Request, _res: Response, next: NextFunction): v
   }
 };
 
-export const requireRole = (role: AuthUser['role']) => (req: Request, _res: Response, next: NextFunction): void => {
-  if (!req.user) throw new HttpError(401, 'Unauthenticated');
-  if (req.user.role !== role && req.user.role !== 'ADMIN') {
-    throw new HttpError(403, 'Forbidden');
-  }
-  next();
-};
+export const requireRole =
+  (role: AuthUser['role']) =>
+  (req: Request, _res: Response, next: NextFunction): void => {
+    if (!req.user) throw new HttpError(401, 'Unauthenticated');
+    if (req.user.role !== role && req.user.role !== 'ADMIN') {
+      throw new HttpError(403, 'Forbidden');
+    }
+    next();
+  };

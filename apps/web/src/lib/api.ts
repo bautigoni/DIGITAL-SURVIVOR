@@ -40,13 +40,21 @@ export interface StartRunResponse {
 
 export const api = {
   health: () => request<{ status: string }>('/health'),
-  startRun: (payload: { mode: 'STORY' | 'SURVIVAL' | 'SCHOOL' | 'MULTIPLAYER'; zoneId: string; classId?: TalentId }) =>
-    request<StartRunResponse>('/game/runs', { method: 'POST', body: JSON.stringify(payload) }),
+  startRun: (payload: {
+    mode: 'STORY' | 'SURVIVAL' | 'SCHOOL' | 'MULTIPLAYER';
+    zoneId: string;
+    classId?: TalentId;
+  }) => request<StartRunResponse>('/game/runs', { method: 'POST', body: JSON.stringify(payload) }),
   nextEvent: (runId: string) =>
     request<{ event: GameEvent; profile: StartRunResponse }>(`/game/runs/${runId}/event`),
   resolveDecision: (
     runId: string,
-    payload: { eventId: string; choiceId: string; event: GameEvent; choice: GameEvent['choices'][number] },
+    payload: {
+      eventId: string;
+      choiceId: string;
+      event: GameEvent;
+      choice: GameEvent['choices'][number];
+    },
   ) =>
     request<{
       profile: StartRunResponse;
@@ -55,6 +63,10 @@ export const api = {
       isPerfect: boolean;
       xpGained: number;
     }>(`/game/runs/${runId}/decision`, { method: 'POST', body: JSON.stringify(payload) }),
-  generateAIEvent: (payload: { zone: string; level: number; recentIds?: string[]; seed?: number }) =>
-    request<GameEvent>('/ai/event', { method: 'POST', body: JSON.stringify(payload) }),
+  generateAIEvent: (payload: {
+    zone: string;
+    level: number;
+    recentIds?: string[];
+    seed?: number;
+  }) => request<GameEvent>('/ai/event', { method: 'POST', body: JSON.stringify(payload) }),
 };

@@ -21,7 +21,12 @@ const startApp = async () => {
   });
 };
 
-const post = async (url: string, path: string, body: unknown, headers: Record<string, string> = {}) => {
+const post = async (
+  url: string,
+  path: string,
+  body: unknown,
+  headers: Record<string, string> = {},
+) => {
   const res = await fetch(`${url}${path}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...headers },

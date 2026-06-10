@@ -2,13 +2,7 @@
  * Las 6 zonas del universo de Internet.
  * Cada zona tiene su propia paleta cromática y taxonomía de amenazas.
  */
-export type ZoneId =
-  | 'social_media'
-  | 'gaming'
-  | 'news'
-  | 'shopping'
-  | 'ai'
-  | 'dark_network';
+export type ZoneId = 'social_media' | 'gaming' | 'news' | 'shopping' | 'ai' | 'dark_network';
 
 export const ZONE_IDS: readonly ZoneId[] = [
   'social_media',

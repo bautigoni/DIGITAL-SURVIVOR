@@ -59,7 +59,8 @@ const config: Config = {
       },
       backgroundImage: {
         'radial-fade': 'radial-gradient(ellipse at top, rgba(255,46,136,0.18), transparent 60%)',
-        'spider-grid': 'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
+        'spider-grid':
+          'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
       },
       backgroundSize: {
         'spider-grid': '40px 40px',

@@ -50,7 +50,9 @@ export const StoryPage = () => {
           </p>
         </header>
         {eventQuery.isLoading || !current ? (
-          <div className="panel-strong animate-pulse p-10 text-center text-white/60">Cargando universo…</div>
+          <div className="panel-strong animate-pulse p-10 text-center text-white/60">
+            Cargando universo…
+          </div>
         ) : (
           <EventCard
             event={current}
@@ -66,8 +68,12 @@ export const StoryPage = () => {
           </div>
         )}
         <div className="flex gap-3">
-          <Button variant="ghost" onClick={() => nav('/play')}>← Volver al mapa</Button>
-          <Button variant="ghost" onClick={() => nav('/achievements')}>Ver logros</Button>
+          <Button variant="ghost" onClick={() => nav('/play')}>
+            ← Volver al mapa
+          </Button>
+          <Button variant="ghost" onClick={() => nav('/achievements')}>
+            Ver logros
+          </Button>
         </div>
       </div>
       <aside>
@@ -97,10 +103,26 @@ export const StoryPage = () => {
           ))}
         </div>
       </Modal>
-      <Modal open={isDead} onClose={() => { setIsDead(false); nav('/play'); }} title="Fin de la partida">
-        <p className="text-white/80">Una de tus estadísticas colapsó. Volvé al mapa y replantá tu estrategia.</p>
+      <Modal
+        open={isDead}
+        onClose={() => {
+          setIsDead(false);
+          nav('/play');
+        }}
+        title="Fin de la partida"
+      >
+        <p className="text-white/80">
+          Una de tus estadísticas colapsó. Volvé al mapa y replantá tu estrategia.
+        </p>
         <div className="mt-4 flex gap-2">
-          <Button onClick={() => { setIsDead(false); nav('/play'); }}>Volver</Button>
+          <Button
+            onClick={() => {
+              setIsDead(false);
+              nav('/play');
+            }}
+          >
+            Volver
+          </Button>
         </div>
       </Modal>
     </div>

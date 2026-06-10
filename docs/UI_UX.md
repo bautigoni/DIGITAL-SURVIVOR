@@ -19,15 +19,15 @@
 
 ### Color
 
-| Token | Uso | Hex |
-|-------|-----|-----|
-| `ink-900/800/700` | Backgrounds | #06030f / #0a0518 / #120a2a |
-| `neon-pink` | Acento primario | #ff2e88 |
-| `neon-cyan` | Acento secundario | #22e3ff |
-| `neon-purple` | Acento intermedio | #a855f7 |
-| `neon-yellow` | Highlights | #fde047 |
-| `neon-green` | Seguro | #34d399 |
-| `neon-orange` | Advertencia | #fb923c |
+| Token             | Uso               | Hex                         |
+| ----------------- | ----------------- | --------------------------- |
+| `ink-900/800/700` | Backgrounds       | #06030f / #0a0518 / #120a2a |
+| `neon-pink`       | Acento primario   | #ff2e88                     |
+| `neon-cyan`       | Acento secundario | #22e3ff                     |
+| `neon-purple`     | Acento intermedio | #a855f7                     |
+| `neon-yellow`     | Highlights        | #fde047                     |
+| `neon-green`      | Seguro            | #34d399                     |
+| `neon-orange`     | Advertencia       | #fb923c                     |
 
 ### Tipografía
 
@@ -37,12 +37,12 @@
 
 ### Motion
 
-| Animación | Uso |
-|-----------|-----|
-| `floaty` | Partículas de fondo |
-| `pop` | Aparición de tarjetas |
-| `glitch` | Estados de "hackeo" / dark network |
-| `shimmer` | Estados de carga premium |
+| Animación | Uso                                |
+| --------- | ---------------------------------- |
+| `floaty`  | Partículas de fondo                |
+| `pop`     | Aparición de tarjetas              |
+| `glitch`  | Estados de "hackeo" / dark network |
+| `shimmer` | Estados de carga premium           |
 
 ## Componentes núcleo
 

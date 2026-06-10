@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createRng, generateProceduralEvent, pickEvent } from '../index.js';
+import { createRng, generateProceduralEvent, pickEvent } from '../index';
 
 describe('Procedural AI', () => {
   it('generates an event with 4 distinct choices', () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { checkSurvival, DEFAULT_STATS } from '../index.js';
+import { checkSurvival, DEFAULT_STATS } from '../index';
 
 describe('checkSurvival', () => {
   it('is alive by default', () => {

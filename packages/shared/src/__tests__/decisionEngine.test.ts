@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { type GameEvent, type Choice, DEFAULT_STATS, applyDecision } from '../index.js';
+import { type GameEvent, type Choice, DEFAULT_STATS, applyDecision } from '../index';
 
 const safeChoice: Choice = {
   id: 'safe',

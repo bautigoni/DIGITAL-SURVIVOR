@@ -36,17 +36,17 @@ const post = async (
 };
 
 describe('AI endpoint', () => {
-  it('requires auth', async () => {
+  it('works without auth (guest mode)', async () => {
     const { url, close } = await startApp();
     try {
       const res = await post(url, '/api/ai/event', { zone: 'social_media', level: 1 });
-      expect(res.status).toBe(401);
+      expect(res.status).toBe(200);
     } finally {
       await close();
     }
   });
 
-  it('returns an event with auth', async () => {
+  it('also works with auth', async () => {
     const { url, close } = await startApp();
     try {
       const res = await post(

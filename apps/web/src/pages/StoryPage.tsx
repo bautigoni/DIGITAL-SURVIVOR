@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRunSession } from '@/features/game/hooks/useRunSession';
 import { EventCard } from '@/features/game/components/EventCard';
@@ -7,38 +7,42 @@ import { Confetti } from '@/components/ui/Confetti';
 import { useGameStore } from '@/features/game/store/gameStore';
 import { usePlayerStore } from '@/features/rpg/store/playerStore';
 import { sound } from '@/lib/sound';
-import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 
 export const StoryPage = () => {
   const nav = useNavigate();
-  const { start, eventQuery, decide, runId, isDead, setIsDead } = useRunSession();
+  const { eventQuery, resolveDecision, isDead, setIsDead } = useRunSession('social_media');
   const current = useGameStore((s) => s.currentEvent);
   const lastFeedback = useGameStore((s) => s.lastFeedback);
   const lastChoice = useGameStore((s) => s.lastChoice);
+  const isResolving = useGameStore((s) => s.isResolving);
   const { level, stats, xp, setZone } = usePlayerStore();
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [celebrate, setCelebrate] = useState(false);
+  const [prevLevel, setPrevLevel] = useState(level);
 
   useEffect(() => {
     sound.init();
     sound.startMusic();
-    if (!runId) {
-      setZone('social_media');
-      start.mutate({ mode: 'STORY', zoneId: 'social_media', classId: 'digital_detective' });
-    }
+    setZone('social_media');
     return () => sound.stopMusic();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setZone]);
 
   useEffect(() => {
-    if (decide.data?.leveledUp) {
+    if (level > prevLevel) {
       setShowLevelUp(true);
       setCelebrate(true);
       setTimeout(() => setCelebrate(false), 2500);
+      setPrevLevel(level);
     }
-  }, [decide.data?.leveledUp]);
+  }, [level, prevLevel]);
+
+  const onChoose = (choiceId: string) => {
+    if (!current) return;
+    const choice = current.choices.find((c) => c.id === choiceId);
+    if (choice) resolveDecision(choice);
+  };
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
@@ -56,8 +60,8 @@ export const StoryPage = () => {
         ) : (
           <EventCard
             event={current}
-            onChoose={(id) => decide.mutate(id)}
-            disabled={decide.isPending}
+            onChoose={onChoose}
+            disabled={isResolving}
             highlight={lastChoice?.outcomeQuality ?? null}
           />
         )}

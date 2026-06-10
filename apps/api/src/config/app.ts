@@ -9,7 +9,7 @@ import { gameController } from '../interfaces/http/controllers/GameController.js
 import { classroomController } from '../interfaces/http/controllers/ClassroomController.js';
 import { aiController } from '../interfaces/http/controllers/AIController.js';
 import { errorMiddleware } from '../interfaces/http/middleware/errors.js';
-import { requireAuth } from '../interfaces/http/middleware/auth.js';
+import { optionalAuth, requireAuth } from '../interfaces/http/middleware/auth.js';
 
 export const createApp = () => {
   const app = express();
@@ -34,9 +34,11 @@ export const createApp = () => {
   app.use(limiter);
 
   app.use('/api/health', healthController());
+  // /api/ai funciona con auth opcional: guests pueden generar eventos.
+  // /api/game y /api/classrooms siguen requiriendo auth (persisten en DB).
   app.use('/api/game', requireAuth, gameController(container.gameService));
   app.use('/api/classrooms', requireAuth, classroomController(container.classroomService));
-  app.use('/api/ai', requireAuth, aiController());
+  app.use('/api/ai', optionalAuth, aiController());
 
   app.use(errorMiddleware);
 

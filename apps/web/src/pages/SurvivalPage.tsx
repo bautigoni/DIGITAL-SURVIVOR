@@ -8,6 +8,7 @@ import { sound } from '@/lib/sound';
 import { Button } from '@/components/ui/Button';
 import { motion } from 'framer-motion';
 import { Swords } from 'lucide-react';
+import type { ZoneId } from '@ds/shared';
 
 const formatTime = (s: number) => {
   const m = Math.floor(s / 60)
@@ -18,20 +19,24 @@ const formatTime = (s: number) => {
 };
 
 export const SurvivalPage = () => {
-  const { start, eventQuery, decide, runId } = useRunSession();
+  const { currentZone } = usePlayerStore();
+  const { eventQuery, resolveDecision } = useRunSession(currentZone as ZoneId);
   const current = useGameStore((s) => s.currentEvent);
-  const { level, stats, xp, currentZone } = usePlayerStore();
+  const isResolving = useGameStore((s) => s.isResolving);
+  const { level, stats, xp } = usePlayerStore();
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
     sound.init();
-    if (!runId) {
-      start.mutate({ mode: 'SURVIVAL', zoneId: currentZone, classId: 'security_expert' });
-    }
     const id = setInterval(() => setSeconds((s) => s + 1), 1000);
     return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const onChoose = (choiceId: string) => {
+    if (!current) return;
+    const choice = current.choices.find((c) => c.id === choiceId);
+    if (choice) resolveDecision(choice);
+  };
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
@@ -59,11 +64,7 @@ export const SurvivalPage = () => {
             Generando evento…
           </div>
         ) : (
-          <EventCard
-            event={current}
-            onChoose={(id) => decide.mutate(id)}
-            disabled={decide.isPending}
-          />
+          <EventCard event={current} onChoose={onChoose} disabled={isResolving} />
         )}
         <div className="mt-4 flex gap-2">
           <Button variant="ghost" onClick={() => location.reload()}>

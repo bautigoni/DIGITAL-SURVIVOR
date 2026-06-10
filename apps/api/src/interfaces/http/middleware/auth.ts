@@ -18,7 +18,8 @@ declare global {
 
 const SECRET = process.env.JWT_SECRET ?? 'dev-secret-change-me';
 
-export const signToken = (user: AuthUser): string => jwt.sign(user, SECRET, { expiresIn: '7d' });
+export const signToken = (user: AuthUser): string =>
+  jwt.sign(user, SECRET, { expiresIn: '7d' });
 
 export const requireAuth = (req: Request, _res: Response, next: NextFunction): void => {
   const header = req.header('authorization');
@@ -34,12 +35,26 @@ export const requireAuth = (req: Request, _res: Response, next: NextFunction): v
   }
 };
 
-export const requireRole =
-  (role: AuthUser['role']) =>
-  (req: Request, _res: Response, next: NextFunction): void => {
-    if (!req.user) throw new HttpError(401, 'Unauthenticated');
-    if (req.user.role !== role && req.user.role !== 'ADMIN') {
-      throw new HttpError(403, 'Forbidden');
+/**
+ * Auth opcional: si hay token, lo setea. Si no, sigue sin req.user.
+ * Útil para endpoints que funcionan tanto con jugadores logueados como guests.
+ */
+export const optionalAuth = (req: Request, _res: Response, next: NextFunction): void => {
+  const header = req.header('authorization');
+  if (header?.startsWith('Bearer ')) {
+    try {
+      req.user = jwt.verify(header.slice(7), SECRET) as AuthUser;
+    } catch {
+      // token inválido: ignorar y seguir como guest
     }
-    next();
-  };
+  }
+  next();
+};
+
+export const requireRole = (role: AuthUser['role']) => (req: Request, _res: Response, next: NextFunction): void => {
+  if (!req.user) throw new HttpError(401, 'Unauthenticated');
+  if (req.user.role !== role && req.user.role !== 'ADMIN') {
+    throw new HttpError(403, 'Forbidden');
+  }
+  next();
+};

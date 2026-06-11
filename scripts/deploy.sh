@@ -32,8 +32,8 @@ for i in $(seq 1 30); do
   sleep 2
 done
 
-echo ">> Prisma migrate deploy"
-docker compose exec -T api npx prisma migrate deploy
+echo ">> Prisma db push (aplica schema.prisma; este repo no usa migrations formales)"
+docker compose exec -T api npx prisma db push --skip-generate
 
 echo ">> Prisma seed (idempotente, podés comentar si no querés)"
 docker compose exec -T api npm run prisma:seed || echo "(seed falló, continuando)"

@@ -87,3 +87,6 @@ docker compose exec -T db pg_dump -U digitalsurvivor -d digitalsurvivor \
 - El **rate-limit** (120 req/min) está en la API; Caddy no agrega nada extra.
 - **Helmet** + **CORS** configurados vía env. Si el dominio cambia, actualizar `CORS_ORIGIN` y `PUBLIC_DOMAIN`.
 - **CORS_ORIGIN** debe incluir el `https://` para que el browser acepte el handshake.
+- Este repo **no tiene `prisma/migrations/`** (sólo `schema.prisma`). Por eso `deploy.sh` usa
+  `prisma db push` y no `migrate deploy`. Si en el futuro agregás migraciones formales, cambiá
+  esa línea a `npx prisma migrate deploy`.

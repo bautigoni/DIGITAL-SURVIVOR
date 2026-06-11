@@ -15,6 +15,11 @@ export const createApp = () => {
   const app = express();
   const container = buildContainer();
 
+  // Confiamos en 1 hop de proxy (nginx del contenedor web). Esto permite que
+  // express-rate-limit identifique al cliente real vía X-Forwarded-For, y que
+  // req.ip refleje la IP del visitante, no la del proxy interno.
+  app.set('trust proxy', 1);
+
   app.use(helmet());
   app.use(
     cors({
